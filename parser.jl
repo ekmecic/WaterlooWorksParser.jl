@@ -1,10 +1,10 @@
 module WWParser
 
 using Printf
-
 @enum ApplicationState Interview NothingYet NotSelected
 
 Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
+    println("Ctrl+A and Ctrl+C on WaterlooWorks, then paste here and press Ctrl+D:")
     # Read until EOF (Ctrl+D) in terminal and parse input
     jobs = map(parseLine, readlines())
 
