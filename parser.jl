@@ -3,14 +3,8 @@ module WWParser
 @enum ApplicationState Interview NothingYet NotSelected
 
 function main()
-    # Slurp file into s
-    f = open("input.txt")
-
-    # Holds all the state of all jobs
-    jobs = []
-
-    # Parse each line
-    jobs = map(parseLine, readlines(f))
+    # Read until EOF (Ctrl+D) in terminal and parse input
+    jobs = map(parseLine, readlines())
 
     # Filter out all the nothings
     filter!(job -> job != nothing, jobs)
