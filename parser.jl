@@ -4,7 +4,7 @@ using Printf
 
 @enum ApplicationState Interview NothingYet NotSelected
 
-function main()
+Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
     # Read until EOF (Ctrl+D) in terminal and parse input
     jobs = map(parseLine, readlines())
 
