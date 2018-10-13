@@ -10,12 +10,10 @@ function main()
     jobs = []
 
     # Parse each line
-    for line in readlines(f)
-        jobState = parseLine(line)
-        if jobState != nothing
-            push!(jobs, jobState)
-        end
-    end
+    jobs = map(parseLine, readlines(f))
+
+    # Filter out all the nothings
+    filter!(job -> job != nothing, jobs)
 
     # Calculate stats
     interviews  = length(findall(job -> job == Interview, jobs))
@@ -26,7 +24,6 @@ function main()
     println("Interviews:\t $interviews \t$(interviews / length(jobs) * 100)")
     println("Waiting:\t $nothingyets \t$(nothingyets / length(jobs) * 100)")
     println("Rejections:\t $rejections \t$(rejections / length(jobs) * 100)")
-    println()
 end
 
 # Parse a line of WaterlooWorks input
