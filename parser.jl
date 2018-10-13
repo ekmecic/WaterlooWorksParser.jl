@@ -19,18 +19,9 @@ function main()
     end
 
     # Calculate stats
-    interviews = 0
-    nothingyets = 0
-    rejections = 0
-    for job in jobs
-        if job == Interview
-            interviews += 1
-        elseif job == NothingYet
-            nothingyets += 1
-        elseif job == NotSelected
-            rejections +=1
-        end
-    end
+    interviews  = length(findall(job -> job == Interview, jobs))
+    nothingyets = length(findall(job -> job == NothingYet, jobs))
+    rejections  = length(findall(job -> job == NotSelected, jobs))
 
     # Pretty print output
     println("Interviews:\t $interviews \t$(interviews / length(jobs) * 100)")
