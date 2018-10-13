@@ -10,8 +10,7 @@ function main()
     jobs = []
 
     # Parse each line
-    lines = readlines(f)
-    for line in lines
+    for line in readlines(f)
         jobState = parseLine(line)
         if jobState != nothing
             push!(jobs, jobState)
