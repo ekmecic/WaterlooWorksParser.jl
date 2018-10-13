@@ -24,16 +24,14 @@ Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
     return 0
 end
 
-# Parse a line of WaterlooWorks input
-# Garbage lines that don't contain job state are ignored
+# Parse a line of WaterlooWorks input. Lines that don't contain job state are ignored
 function parseLine(line)
     if occursin("Selected for Interview", line)
         return Interview
     elseif occursin("Applied", line) && occursin("Expired - Apps Available", line)
         return NothingYet
     elseif occursin("Applied", line)
-        # If the the state is "Applied" but wasn't caught by the prev. condition
-        # then you weren't selected
+        # If the state is "Applied" but wasn't caught earlier -> not selected
         return NotSelected
     end
 end
