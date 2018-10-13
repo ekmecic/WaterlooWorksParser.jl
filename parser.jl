@@ -1,5 +1,7 @@
 module WWParser
 
+using Printf
+
 @enum ApplicationState Interview NothingYet NotSelected
 
 function main()
@@ -15,9 +17,10 @@ function main()
     rejections  = length(findall(job -> job == NotSelected, jobs))
 
     # Pretty print output
-    println("Interviews:\t $interviews \t$(interviews / length(jobs) * 100)")
-    println("Waiting:\t $nothingyets \t$(nothingyets / length(jobs) * 100)")
-    println("Rejections:\t $rejections \t$(rejections / length(jobs) * 100)")
+    print("Interviews:\t $interviews\t"); @printf("%.1f%%\n", (interviews / length(jobs)) * 100)
+    print("Waiting:\t $nothingyets\t");   @printf("%.1f%%\n", (nothingyets / length(jobs)) * 100)
+    print("Rejections:\t $rejections\t"); @printf("%.1f%%\n", (rejections / length(jobs)) * 100)
+    return 0
 end
 
 # Parse a line of WaterlooWorks input
