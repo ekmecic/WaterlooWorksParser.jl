@@ -1,6 +1,7 @@
 module WWParser
 
 using Printf
+using Dates
 @enum ApplicationState Interview NothingYet NotSelected
 
 Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
@@ -23,6 +24,11 @@ Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
     println()
     print("Conversion rate: \t"); @printf("%.1f%%\n", (interviews / (interviews + rejections)) * 100)
     println("Total applications:\t$(length(jobs))")
+
+    # Write stats to file for later analysis
+    open("/home/emil/cloud/projects/WaterlooWorksParser.jl/f2018_stats.tsv", "a") do f
+        write(f, "$(Dates.now())\t$interviews\t$nothingyets\t$rejections\n")
+    end
     return 0
 end
 
