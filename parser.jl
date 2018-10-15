@@ -20,7 +20,9 @@ Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
     print("Interviews:\t $interviews\t"); @printf("%.1f%%\n", (interviews / length(jobs)) * 100)
     print("Waiting:\t $nothingyets\t");   @printf("%.1f%%\n", (nothingyets / length(jobs)) * 100)
     print("Rejections:\t $rejections\t"); @printf("%.1f%%\n", (rejections / length(jobs)) * 100)
-    println("Total:\t\t $(length(jobs))")
+    println()
+    print("Conversion rate: \t"); @printf("%.1f%%\n", (interviews / (interviews + rejections)) * 100)
+    println("Total applications:\t$(length(jobs))")
     return 0
 end
 
