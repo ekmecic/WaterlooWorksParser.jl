@@ -27,7 +27,7 @@ Base.@ccallable function julia_main(ARGS::Vector{String})::Cint
 
     # Write stats to file for later analysis
     open("/home/emil/cloud/projects/WaterlooWorksParser.jl/f2018_stats.tsv", "a") do f
-        write(f, "$(Dates.now())\t$interviews\t$nothingyets\t$rejections\n")
+        write(f, "$(Dates.now()), $interviews, $nothingyets, $rejections\n")
     end
     return 0
 end
